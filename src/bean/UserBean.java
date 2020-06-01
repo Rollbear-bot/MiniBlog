@@ -9,6 +9,13 @@ import java.sql.*;
 import java.sql.SQLException;
 
 public class UserBean {
+    /**
+     * 构造函数
+     */
+    public UserBean(){
+        dbConn = new DBConn();  //连接数据库
+    }
+
     public void setEmail(String e){
         email = e;
     }
@@ -22,9 +29,8 @@ public class UserBean {
      * @return 登录成功与否
      */
     public boolean isLegal(){
-        DBConn db = new DBConn();  //连接数据库
         try{
-            ResultSet rs = db.exec("SELECT * FROM registered_user WHERE email='"
+            ResultSet rs = dbConn.exec("SELECT * FROM registered_user WHERE email='"
                     + email + "'"
                     + "and password='"
                     + password + "'");
@@ -37,5 +43,6 @@ public class UserBean {
 
     private String password;
     private String email;  //email作为登录名
+    private final DBConn dbConn;
 
 }
