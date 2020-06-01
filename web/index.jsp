@@ -11,6 +11,25 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+
+<%--  使用表格嵌套表单的方式排版--%>
+  <p>请登录</p>
+  <table>
+    <form action="${pageContext.request.contextPath}/LoginVerification"
+    method="post" name="getLoginInfo">
+      <tr>
+        <td>注册邮箱：</td>
+        <td><input type="text" name="email"></td>
+      </tr>
+      <tr>
+        <td>密码：</td>
+        <td><input type="password" name="pwd"></td>
+      </tr>
+      <tr>
+        <td><input type="submit"></td>
+      </tr>
+    </form>
+  </table>
+
   </body>
 </html>
