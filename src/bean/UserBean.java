@@ -34,7 +34,13 @@ public class UserBean {
                     + email + "'"
                     + "and password='"
                     + password + "'");
-            return rs.next();
+            if (rs.next()){
+                userID = rs.getInt(1);
+                gender = rs.getString("gender");
+                userName = rs.getString("name");
+                return true;
+            }
+            return false;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -54,6 +60,7 @@ public class UserBean {
                 + "'" + password + "')");
     }
 
+    private int userID;
     private String password;
     private String email;  //email×÷ÎªµÇÂ¼Ãû
     private String gender;
@@ -66,5 +73,9 @@ public class UserBean {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public int getUserID() {
+        return userID;
     }
 }
