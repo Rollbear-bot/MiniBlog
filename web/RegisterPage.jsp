@@ -12,7 +12,12 @@
 </head>
 <body>
 
-<p>提示信息：<%=request.getAttribute("message") %></p>
+<%--显示提示信息--%>
+<%
+    String message = (String) request.getAttribute("message");
+    message = (message == null)? "": message;
+%>
+<p><%=message%></p>
 
 <p>注册页面</p>
 <table>
