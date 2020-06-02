@@ -18,11 +18,16 @@
 
 <%--获取从登录页面转发过来的用户信息--%>
 <%
-    int userID = 0;
-    userID = (int) session.getAttribute("userID");
+//    int userID = 0;
+//    if(session.getAttribute("userID") != null)
+//        userID = (int) session.getAttribute("userID");
 
     boolean login = request.getAttribute("login") != null && (boolean) request.getAttribute("login");
     String userName = (String) request.getAttribute("userName");
+    if(!login){
+        session.setAttribute("userID", null);
+        session.setAttribute("userName", null);
+    }
 
     String headerMessage = login? ("你好，" + userName): "你好，游客";
 %>
@@ -36,7 +41,9 @@
     out.print("<table>");
     for (int index=0; index < lt.size(); index++) {
         out.print("<tr>");
-        out.print("<td>" + lt.get(index) + "</td>");
+        out.print("<td><a href=\"ArticlePage.jsp?title="
+                + lt.get(index)
+                + "\">" + lt.get(index) + "</a></td>");
         index++;
         out.print("<td>" + " | 浏览量：" + lt.get(index) + "</td>");
         out.print("</tr>");
