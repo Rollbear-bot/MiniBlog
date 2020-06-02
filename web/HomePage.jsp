@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: 13592
   Date: 2020/5/31
@@ -28,16 +28,55 @@
 %>
 <p><%=headerMessage%></p>
 
+<%--从JavaBean获取文章列表并显示--%>
 <hr>
 <p>文章列表</p>
-<p>
-    <jsp:getProperty name="articleProfileBean" property="articleProfile"/>
-</p>
+<%
+    ArrayList<String> lt = articleProfileBean.getArticleProfile();
+    out.print("<table>");
+    for (int index=0; index < lt.size(); index++) {
+        out.print("<tr>");
+        out.print("<td>" + lt.get(index) + "</td>");
+        index++;
+        out.print("<td>" + " | 浏览量：" + lt.get(index) + "</td>");
+        out.print("</tr>");
+    }
+    out.print("</table>");
+%>
 
+<%--导航栏--%>
 <hr>
-<p><a href="PersonalPage.jsp">个人主页</a> </p>
-<p><a href="EditPage.jsp">编辑文章</a> </p>
-<p><a href="index.jsp">退出登录</a> </p>
+<%
+    if(login){
+        out.print("<p><a href=\"PersonalPage.jsp\">个人主页</a> </p>");
+        out.print("<p><a href=\"EditPage.jsp\">编辑文章</a> </p>");
+        out.print("<p><a href=\"index.jsp\">退出登录</a> </p>");
+    }
+    else
+        out.print("<p>若要发布文章或关注用户，请<a href=\"index.jsp\">登录</a></p>");
+%>
+
+<%--搜索栏--%>
+<hr>
+<table>
+<form action="SearchController" method="post">
+    <tr><td>搜索栏</td></tr>
+    <tr>
+        <td>
+            <select name="searchType">
+                <option selected>搜索用户</option>
+                <option>搜索帖子</option>
+            </select>
+        </td>
+        <td>
+            <input type="text" name="text">
+        </td>
+        <td>
+            <input type="submit" value="搜索">
+        </td>
+    </tr>
+</form>
+</table>
 
 </body>
 </html>
