@@ -75,6 +75,8 @@ public class UserBean {
         this.userName = userName;
     }
 
+    public String getUserName(){ return userName;}
+
     public int getUserID() {
         return userID;
     }
