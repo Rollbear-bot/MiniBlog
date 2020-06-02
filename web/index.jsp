@@ -8,9 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>Login</title>
   </head>
   <body>
+
+<%--显示提示信息--%>
+<%
+  String message = (String) request.getAttribute("message");
+  message = (message == null)? "": message;
+%>
+<p><%=message%></p>
 
 <%--  使用表格嵌套表单的方式排版--%>
   <p>请登录</p>
@@ -18,7 +25,7 @@
     <form action="${pageContext.request.contextPath}/LoginVerification"
     method="post" name="getLoginInfo">
       <tr>
-        <td>注册邮箱：</td>
+        <td>邮箱：</td>
         <td><input type="text" name="email"></td>
       </tr>
       <tr>
@@ -30,6 +37,8 @@
       </tr>
     </form>
   </table>
+
+  <p>还没有账号？<a href="RegisterPage.jsp">注册一个</a> </p>
 
   </body>
 </html>

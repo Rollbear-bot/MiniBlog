@@ -22,7 +22,8 @@ public class RegisterController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
         String email = req.getParameter("email");
         String pwd = req.getParameter("password");
         String ensure = req.getParameter("ensure");
@@ -42,12 +43,12 @@ public class RegisterController extends HttpServlet {
             bean.setEmail(email);
             bean.setPassword(pwd);
             bean.setGender(gender);
-            //todo::注册成功
             try {
                 bean.commit();
             } catch (SQLException e) {
-                if(e.getMessage().startsWith("未返回")){
-                    req.getRequestDispatcher("HomePage.jsp")
+                if(e.getMessage().startsWith("该语句没有返回结果集")){
+                    req.setAttribute("message","注册成功，请登录");
+                    req.getRequestDispatcher("index.jsp")
                             .forward(req, resp);
                 }
                 req.setAttribute("message","注册失败，可能是当前邮箱已被使用");
