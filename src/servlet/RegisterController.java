@@ -30,6 +30,13 @@ public class RegisterController extends HttpServlet {
         String userName = req.getParameter("userName");
         String gender = req.getParameter("gender");
 
+        if(email.equals("")||pwd.equals("")||ensure.equals("")
+        ||userName.equals("")||gender.equals("")){
+            //存在未填写的表项
+            req.setAttribute("message","存在未填写的表项");
+            req.getRequestDispatcher("RegisterPage.jsp").forward(req, resp);
+        }
+
         if(!pwd.equals(ensure)){
             //若确认密码与密码不同，则重新输入
             req.setAttribute("message","确认密码与密码不符");
