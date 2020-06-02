@@ -28,7 +28,7 @@ public class UserBean {
      * 判断用户的登录名和密码是否正确
      * @return 登录成功与否
      */
-    public boolean isLegal(){
+    public boolean isExisted(){
         try{
             ResultSet rs = dbConn.exec("SELECT * FROM registered_user WHERE email='"
                     + email + "'"
@@ -41,8 +41,30 @@ public class UserBean {
         }
     }
 
+    /**
+     * 将当前对象保存的用户信息插入到数据库
+     * @throws SQLException SQL异常（尤其是邮箱重复）
+     */
+    public void commit() throws SQLException {
+        dbConn.exec("INSERT INTO registered_user " +
+                "(name, gender, email, password) VALUES("
+                + "'" + userName + "',"
+                + "'" + gender + "',"
+                + "'" + email + "',"
+                + "'" + password + "')");
+    }
+
     private String password;
     private String email;  //email作为登录名
+    private String gender;
+    private String userName;
     private final DBConn dbConn;
 
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 }
