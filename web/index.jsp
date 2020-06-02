@@ -18,6 +18,7 @@
   message = (message == null)? "": message;
 %>
 <p><%=message%></p>
+<hr>
 
 <%--  使用表格嵌套表单的方式排版--%>
   <p>请登录</p>
@@ -33,7 +34,7 @@
         <td><input type="password" name="pwd"></td>
       </tr>
       <tr>
-        <td><input type="submit"></td>
+        <td><input type="submit" value="登录"></td>
       </tr>
     </form>
   </table>

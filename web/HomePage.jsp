@@ -13,7 +13,8 @@
     <title>HomePage</title>
 </head>
 <body>
-<script>alert("登陆成功")</script>
+
+<%--<script>alert("登陆成功")</script>--%>
 
 <%--获取从登录页面转发过来的用户信息--%>
 <%

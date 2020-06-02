@@ -18,6 +18,7 @@
     message = (message == null)? "": message;
 %>
 <p><%=message%></p>
+<hr>
 
 <p>注册页面</p>
 <table>
