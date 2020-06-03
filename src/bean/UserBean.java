@@ -16,14 +16,6 @@ public class UserBean {
         dbConn = new DBConn();  //连接数据库
     }
 
-    public void setEmail(String e){
-        email = e;
-    }
-
-    public void setPassword(String pwd){
-        password = pwd;
-    }
-
     /**
      * 判断用户的登录名和密码是否正确
      * @return 登录成功与否
@@ -60,6 +52,14 @@ public class UserBean {
                 + "'" + password + "')");
     }
 
+    /**
+     * 查找用户
+     * @param pattern 匹配字串
+     */
+    public void userSearcher(String pattern){
+
+    }
+
     private int userID;
     private String password;
     private String email;  //email作为登录名
@@ -79,5 +79,13 @@ public class UserBean {
 
     public int getUserID() {
         return userID;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

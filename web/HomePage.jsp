@@ -38,17 +38,8 @@
 <p>文章列表</p>
 <%
     ArrayList<String> lt = articleProfileBean.getArticleProfile();
-    out.print("<table>");
-    for (int index=0; index < lt.size(); index++) {
-        out.print("<tr>");
-        out.print("<td><a href=\"ArticlePage.jsp?title="
-                + lt.get(index)
-                + "\">" + lt.get(index) + "</a></td>");
-        index++;
-        out.print("<td>" + " | 浏览量：" + lt.get(index) + "</td>");
-        out.print("</tr>");
-    }
-    out.print("</table>");
+    String table = articleProfileBean.toTableLabel(lt);
+    out.print(table);
 %>
 
 <%--导航栏--%>
