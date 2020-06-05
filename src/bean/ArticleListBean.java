@@ -29,6 +29,7 @@ public class ArticleListBean {
             while(rs.next()){
                 res.add(rs.getString("title"));
                 res.add(String.valueOf(rs.getInt("post_view")));
+                res.add(String.valueOf(rs.getInt("id")));  //把主键取出来才能唯一标识一个帖子
             }
 
         } catch (SQLException e) {
@@ -53,6 +54,7 @@ public class ArticleListBean {
             while(rs.next()){
                 res.add(rs.getString("title"));
                 res.add(String.valueOf(rs.getInt("post_view")));
+                res.add(String.valueOf(rs.getInt("id")));  //把主键取出来才能唯一标识一个帖子
             }
 
         } catch (SQLException e) {
@@ -76,6 +78,7 @@ public class ArticleListBean {
             while(rs.next()){
                 res.add(rs.getString("title"));
                 res.add(String.valueOf(rs.getInt("post_view")));
+                res.add(String.valueOf(rs.getInt("id")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -93,10 +96,12 @@ public class ArticleListBean {
         stringBuilder.append("<table>");
         for (int index=0; index < lt.size(); index++) {
             stringBuilder.append("<tr>");
-            stringBuilder.append("<td><a href=\"ArticlePage.jsp?title=").append(lt.get(index)).append("\">").append(lt.get(index)).append("</a></td>");
+            stringBuilder.append("<td><a href=\"ArticlePage.jsp?title=")
+                    .append(lt.get(index)).append("\">").append(lt.get(index)).append("</a></td>");
             index++;
             stringBuilder.append("<td>" + " | 浏览量：").append(lt.get(index)).append("</td>");
             stringBuilder.append("</tr>");
+            index++;  //通过id字段
         }
         stringBuilder.append("</table>");
         return stringBuilder.toString();
