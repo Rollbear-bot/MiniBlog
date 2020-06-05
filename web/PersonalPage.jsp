@@ -12,7 +12,7 @@
 <html>
 <head>
     <title>PersonalPage</title>
-    <link rel="stylesheet" type="text/css" href="./StaticFiles/han.css">
+    <link rel="stylesheet" type="text/css" href="./StaticFiles/vue.css">
 </head>
 <body>
 <%

@@ -9,8 +9,13 @@
 <html>
   <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="./StaticFiles/han.css">
+    <link rel="stylesheet" type="text/css" href="./StaticFiles/vue.css">
   </head>
+  <style>
+    p {text-align: center}
+    table {text-align: center; align-self: center; align-content: center}
+    form {text-align: center; align-self: center; align-content: center}
+  </style>
   <body>
 
 <%--显示提示信息--%>
