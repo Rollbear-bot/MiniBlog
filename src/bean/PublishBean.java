@@ -45,15 +45,19 @@ public class PublishBean {
      * @param title 文章标题
      * @param text 正文
      * @param userID 发布文章的用户的ID
+     * @return 提交是否成功
      */
-    public void commitNewArticle(String title, String text, int userID){
+    public boolean commitNewArticle(String title, String text, int userID){
         String sql = "INSERT INTO post (title, text, publisher) VALUES"
-                + "(" + title + "," + text + "," + userID + ")";
+                + "('" + title + "','" + text + "','" + userID + "')";
         try {
             dbConn.exec(sql);
         } catch (SQLException e) {
             e.printStackTrace();
+            if(e.getMessage().startsWith("该语句没有返回结果集"))
+                return true;
         }
+        return false;
     }
 
     private final DBConn dbConn;

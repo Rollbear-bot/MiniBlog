@@ -19,10 +19,6 @@
 
 <%--获取从登录页面转发过来的用户信息--%>
 <%
-//    int userID = 0;
-//    if(session.getAttribute("userID") != null)
-//        userID = (int) session.getAttribute("userID");
-
     boolean login = request.getAttribute("login") != null && (boolean) request.getAttribute("login");
     String userName = (String) request.getAttribute("userName");
     if(!login){
@@ -31,6 +27,11 @@
     }
 
     String headerMessage = login? ("你好，" + userName): "你好，游客";
+
+    //提示信息
+    if (request.getAttribute("message") != null){
+        out.print(request.getAttribute("message"));
+    }
 %>
 <p><%=headerMessage%></p>
 
@@ -48,7 +49,7 @@
 <%
     if(login){
         out.print("<p><a href=\"PersonalPage.jsp\">个人主页</a> </p>");
-        out.print("<p><a href=\"EditPage.jsp\">编辑文章</a> </p>");
+        out.print("<p><a href=\"EditPage.jsp\">发布新文章</a> </p>");
         out.print("<p><a href=\"index.jsp\">退出登录</a> </p>");
     }
     else

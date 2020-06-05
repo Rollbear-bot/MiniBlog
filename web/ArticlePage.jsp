@@ -42,7 +42,6 @@
 
     <div id="menu" style="background-color: #fdf7bb;
     float: left; height: 80%; width: 10%; text-align: center">
-<%--        todo::菜单栏--%>
         <b>菜单</b>
         <br><a href="HomePage.jsp">HomePage</a>
         <br><a href="PersonalPage.jsp">个人中心</a>
