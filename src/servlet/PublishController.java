@@ -29,6 +29,12 @@ public class PublishController extends HttpServlet {
         String title = (String) req.getParameter("title");
         String text = (String) req.getParameter("text");
 
+        if(title.equals("") || text.equals("")){
+            req.setAttribute("message", "发布失败！请检查表项填写是否完整");
+            req.setAttribute("login", true);
+            req.getRequestDispatcher("HomePage.jsp").forward(req, resp);
+        }
+
         //实例化一个Bean来处理发布相关事务
         PublishBean bean = new PublishBean();
         boolean done = bean.commitNewArticle(title, text, userID);
