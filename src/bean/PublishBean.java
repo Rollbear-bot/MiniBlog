@@ -46,7 +46,7 @@ public class PublishBean {
      * @param text 正文
      * @param userID 发布文章的用户的ID
      */
-    public void CommitNewArticle(String title, String text, int userID){
+    public void commitNewArticle(String title, String text, int userID){
         String sql = "INSERT INTO post (title, text, publisher) VALUES"
                 + "(" + title + "," + text + "," + userID + ")";
         try {
