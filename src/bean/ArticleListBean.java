@@ -94,14 +94,12 @@ public class ArticleListBean {
     public String toTableLabel(ArrayList<String> lt){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<table>");
-        for (int index=0; index < lt.size(); index++) {
+        for (int index=0; index < lt.size(); index += 3) {
             stringBuilder.append("<tr>");
-            stringBuilder.append("<td><a href=\"ArticlePage.jsp?title=")
-                    .append(lt.get(index)).append("\">").append(lt.get(index)).append("</a></td>");
-            index++;
-            stringBuilder.append("<td>" + " | 浏览量：").append(lt.get(index)).append("</td>");
+            stringBuilder.append("<td><a href=\"ArticlePage.jsp?article_id=")
+                    .append(lt.get(index+2)).append("\">").append(lt.get(index)).append("</a></td>");
+            stringBuilder.append("<td>" + "浏览量：").append(lt.get(index+1)).append("</td>");
             stringBuilder.append("</tr>");
-            index++;  //通过id字段
         }
         stringBuilder.append("</table>");
         return stringBuilder.toString();
