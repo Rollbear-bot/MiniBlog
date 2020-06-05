@@ -32,7 +32,7 @@ public class UserListBean {
                             + "' and target = registered_user.id");
             while(rs.next()){
                 lt.add(rs.getString("target"));
-                lt.add(String.valueOf(rs.getInt("name")));
+                lt.add(String.valueOf(rs.getString("name")));
                 lt.add(String.valueOf(rs.getDate("following_date")));
             }
         } catch (SQLException e) {
@@ -47,9 +47,9 @@ public class UserListBean {
             stringBuilder.append("<td><a href=\"ArticlePage.jsp?title=")
                     .append(lt.get(index)).append("\">").append(lt.get(index)).append("</a></td>");
             index++;
-            stringBuilder.append("<td>" + " | ").append(lt.get(index)).append("</td>");
+            stringBuilder.append("<td>").append(lt.get(index)).append("</td>");
             index++;
-            stringBuilder.append("<td>" + " | ").append(lt.get(index)).append("</td>");
+            stringBuilder.append("<td>").append(lt.get(index)).append("</td>");
             stringBuilder.append("</tr>");
         }
         stringBuilder.append("</table>");
