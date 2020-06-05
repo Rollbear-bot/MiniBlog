@@ -11,6 +11,7 @@
 <html>
 <head>
     <title>HomePage</title>
+    <link rel="stylesheet" type="text/css" href="./StaticFiles/han.css">
 </head>
 <body>
 

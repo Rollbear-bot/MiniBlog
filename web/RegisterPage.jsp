@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>RegisterPage</title>
+    <link rel="stylesheet" type="text/css" href="./StaticFiles/han.css">
 </head>
 <body>
 

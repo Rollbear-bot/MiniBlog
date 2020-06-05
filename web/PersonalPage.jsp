@@ -12,6 +12,7 @@
 <html>
 <head>
     <title>PersonalPage</title>
+    <link rel="stylesheet" type="text/css" href="./StaticFiles/han.css">
 </head>
 <body>
 <%

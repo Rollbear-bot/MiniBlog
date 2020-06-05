@@ -11,6 +11,7 @@
 <html>
 <head>
     <title>ArticlePage</title>
+    <link rel="stylesheet" type="text/css" href="./StaticFiles/han.css">
 </head>
 <body>
 
@@ -37,8 +38,8 @@
 <hr>
 
 <%--显示文章--%>
-<h1><%=title%></h1>
-<p><%=text%></p>
+<h1 style="text-align: center"><%=title%></h1>
+<p style="text-align: center"><%=text%></p>
 
 <%--todo::评论--%>
 
