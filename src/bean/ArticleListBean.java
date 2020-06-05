@@ -39,6 +39,7 @@ public class ArticleListBean {
 
     /**
      * 获取某个用户的收藏夹
+     * @param userID 用户ID
      * @return 文章信息列表
      */
     public ArrayList<String> getFavorite(int userID){
@@ -48,12 +49,34 @@ public class ArticleListBean {
             ResultSet rs = dbConn.exec(
                     "SELECT * FROM favorite, post WHERE user_id='"
                     + userID
-                    + "' and favorite.article_id=post.id");
+                    + "' and favorite.article_id = post.id");
             while(rs.next()){
                 res.add(rs.getString("title"));
                 res.add(String.valueOf(rs.getInt("post_view")));
             }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    /**
+     * 获取某个用户的近期浏览文章列表
+     * @param userID 用户ID
+     * @return 文章信息列表
+     */
+    public ArrayList<String> getRecentBrowse(int userID){
+        ArrayList<String> res = new ArrayList<>();
+        try{
+            ResultSet rs = dbConn.exec(
+                    "SELECT * FROM view, post WHERE user_id='"
+                    + userID
+                    + "' and view.post_id = post.id");
+            while(rs.next()){
+                res.add(rs.getString("title"));
+                res.add(String.valueOf(rs.getInt("post_view")));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
