@@ -14,6 +14,16 @@
 </head>
 <body>
 
+<%--获得要显示的文章信息--%>
+<%
+    String article_id = "";
+    article_id = (String) request.getParameter("article_id");
+    articleBean.setId(Integer.parseInt(article_id));
+
+    String title = articleBean.getTitle();  //获取文章标题
+    String text = articleBean.getText();  //获取正文
+%>
+
 <%--显示当前登录信息--%>
 <%
     String userName = (String) session.getAttribute("userName");
@@ -26,15 +36,6 @@
 %>
 <hr>
 
-<%--获得要显示的文章信息--%>
-<%
-    String article_id = "";
-    article_id = (String) request.getParameter("article_id");
-    articleBean.setId(Integer.parseInt(article_id));
-
-    String title = articleBean.getTitle();  //获取文章标题
-    String text = articleBean.getText();  //获取正文
-%>
 <%--显示文章--%>
 <h1><%=title%></h1>
 <p><%=text%></p>

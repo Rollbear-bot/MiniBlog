@@ -34,10 +34,11 @@ public class PostBean {
         String sql = "SELECT * FROM post WHERE id='" + id + "'";
         try{
             ResultSet rs = dbConn.exec(sql);
-            this.title = rs.getString("title");
-            this.text = rs.getString("text");
-            this.postView = rs.getInt("post_view");
-            this.type = rs.getString("type");
+            rs.next();
+            this.title = rs.getString(2);
+            this.text = rs.getString(3);
+            this.postView = rs.getInt(4);
+            this.type = rs.getString(5);
         } catch (SQLException e) {
             e.printStackTrace();
         }
