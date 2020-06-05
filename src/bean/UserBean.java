@@ -27,7 +27,7 @@ public class UserBean {
                     + "and password='"
                     + password + "'");
             if (rs.next()){
-                userID = rs.getInt(1);
+                userID = rs.getInt("id");
                 gender = rs.getString("gender");
                 userName = rs.getString("name");
                 return true;

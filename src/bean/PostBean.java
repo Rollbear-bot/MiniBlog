@@ -35,10 +35,10 @@ public class PostBean {
         try{
             ResultSet rs = dbConn.exec(sql);
             rs.next();
-            this.title = rs.getString(2);
-            this.text = rs.getString(3);
-            this.postView = rs.getInt(4);
-            this.type = rs.getString(5);
+            this.title = rs.getString("title");
+            this.text = rs.getString("text");
+            this.postView = rs.getInt("post_view");
+            this.type = rs.getString("type");
         } catch (SQLException e) {
             e.printStackTrace();
         }
