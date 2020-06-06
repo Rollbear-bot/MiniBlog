@@ -41,27 +41,38 @@
         <%--在header中显示当前登录信息--%>
         <%
             String userName = (String) session.getAttribute("userName");
-//            int userID = 0;
-//            if(session.getAttribute("userID") != null)
-//                userID = (int) session.getAttribute("userID");
             if(userName == null)
                 out.print("<p>游客，请<a href=\"index.jsp\">登录</a></p>");
             else out.print("<p>当前用户：" + userName + "</p>");
         %>
     </div>
 
+    <%--菜单栏--%>
     <div id="menu" style="background-color: #fdf7bb;
     float: left; height: 80%; width: 10%; text-align: center">
         <b>菜单</b>
-        <br><a href="HomePage.jsp">HomePage</a>
-        <br><a href="PersonalPage.jsp">个人中心</a>
-        <br><a href="index.jsp">退出登录</a>
+        <%
+            if (userName == null){
+                out.print("<br><a href=\"HomePage.jsp\">HomePage</a>");
+                out.print("<br><a href=\"index.jsp\">登录</a>");
+            }
+            else{
+                out.print("<br><a href=\"HomePage.jsp?login=1\">HomePage</a>");
+                out.print("<br><a href=\"PersonalPage.jsp\">个人中心</a>\n" +
+                        "<br><a href=\"index.jsp\">退出登录</a>");
+            }
+        %>
+
     </div>
 
-    <div id="content" style="height: 80%; float: left;
+    <div id="title" style="float: left;
     background-color: #ececec; width: 90%">
-        <%--显示文章--%>
+        <%--显示文章头部--%>
         <h1 style="text-align: center"><%=title%></h1>
+    </div>
+
+    <div id="content" style="height: 80%; width: 70%; float: right">
+        <%--显示正文--%>
         <p><%=text%></p>
     </div>
 

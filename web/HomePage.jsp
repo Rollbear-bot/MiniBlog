@@ -15,18 +15,21 @@
 </head>
 <body>
 
-<%--<script>alert("登陆成功")</script>--%>
-
 <%--获取从登录页面转发过来的用户信息--%>
 <%
-    boolean login = request.getAttribute("login") != null && (boolean) request.getAttribute("login");
-    String userName = (String) request.getAttribute("userName");
+    boolean param_login = request.getParameter("login") != null
+            && request.getParameter("login").equals("1");
+    boolean att_login = request.getAttribute("login") != null
+            && (boolean) request.getAttribute("login");
+    boolean login = param_login || att_login;
+
+    String userName = (String) session.getAttribute("userName");
     if(!login){
         session.setAttribute("userID", null);
         session.setAttribute("userName", null);
     }
 
-    String headerMessage = login? ("你好，" + userName): "你好，游客";
+    String headerMessage = login ? ("你好，" + userName): "你好，游客";
 
     //提示信息
     if (request.getAttribute("message") != null){

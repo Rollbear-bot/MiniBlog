@@ -44,7 +44,6 @@ public class LoginVerification extends HttpServlet {
         }
         else {
             //µÇÂ½Ê§°Ü£¬·µ»ØµÇÂ¼Ò³Ãæ
-            req.setAttribute("failed", "loginResult");
             req.setAttribute("message","ÓÊÏäµØÖ·»òÃÜÂë´íÎó");
             req.getRequestDispatcher("index.jsp").forward(req, resp);
         }
