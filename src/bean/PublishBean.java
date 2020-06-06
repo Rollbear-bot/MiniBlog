@@ -60,6 +60,28 @@ public class PublishBean {
         return false;
     }
 
+    /**
+     * 发布新评论
+     * @param text 评论文本
+     * @param userID 发表用户的ID
+     * @param parent_post 母帖ID
+     * @return 提交是否成功
+     */
+    public boolean commitNewComment(String text, int userID, int parent_post){
+        String sql = "INSERT INTO post (text, type, publisher, parent_post)" +
+                " VALUES ('" + text + "','comment','" + userID +
+                "','" + parent_post + "')";
+        try {
+            dbConn.exec(sql);
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            if(e.getMessage().startsWith("该语句没有返回结果集"))
+                return true;
+        }
+        return false;
+    }
+
     private final DBConn dbConn;
     private int id;
     private String title;

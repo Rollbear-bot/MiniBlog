@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="articleBean" class="bean.PostBean"/>
 <jsp:useBean id="userBean" class="bean.UserBean"/>
+<jsp:useBean id="articleListBean" class="bean.ArticleListBean"/>
 
 <html>
 <head>
@@ -107,7 +108,25 @@
     <div id="comment" style="background-color: #85a6d8;
     height: 200px; clear: both; text-align: center">
         <h2>评论</h2>
-        <%--todo::评论--%>
+
+        <%--评论输入栏--%>
+        <div style="width:100%;text-align:center">
+            <form action="${pageContext.request.contextPath}/CommentController"
+                  method="post">
+                <input type="text" name="text">
+                <input type="submit" value="发布评论">
+                <%--在隐藏表项中传递当前帖子的ID和用户ID--%>
+                <input type="hidden" name="parent_post"
+                       value=<%=articleBean.getId()%>>
+                <input type="hidden" name="userID"
+                       value=<%=userID%>>
+            </form>
+        </div>
+
+        <%--评论显示栏--%>
+        <div style="width:100%;text-align:center">
+            <%=articleListBean.getCommentList(articleBean.getId())%>
+        </div>
     </div>
 
 </div>

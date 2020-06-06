@@ -122,6 +122,43 @@ public class ArticleListBean {
     }
 
     /**
+     * 加载某篇文章的评论列表
+     * @param postID 文章ID
+     * @return HTML标签字符串
+     */
+    public String getCommentList(int postID){
+        ArrayList<String> lt = new ArrayList<>();
+        String sql = "SELECT * FROM post, registered_user " +
+                " WHERE parent_post=" + postID +
+                " and post.publisher = registered_user.id";
+        try{
+            //从数据库抓取对应文章的评论正文、作者和发布时间
+            ResultSet resultSet = dbConn.exec(sql);
+            while (resultSet.next()){
+                lt.add(resultSet.getString("text"));
+                lt.add(resultSet.getString("name"));
+                lt.add(resultSet.getDate("publishing_date")
+                        .toString());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<table>");
+        for (int index=0; index < lt.size(); index += 3) {
+            stringBuilder.append("<tr>");
+            for(int i = 0; i < 3; i++){
+                stringBuilder.append("<td>");
+                stringBuilder.append(lt.get(index+i));
+                stringBuilder.append("</td>");
+            }
+            stringBuilder.append("</tr>");
+        }
+        stringBuilder.append("</table>");
+        return stringBuilder.toString();
+    }
+
+    /**
      * 生成HTML风格表格标签（视图相关）
      * @param lt 保存了文章标题和浏览量信息的数组
      * @return HTML标签字符串
