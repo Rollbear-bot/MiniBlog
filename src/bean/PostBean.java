@@ -49,6 +49,26 @@ public class PostBean {
     }
 
     /**
+     * 将当前文章添加到一个用户的收藏夹
+     * @param userID 收藏用户的ID
+     * @return 收藏成功或失败
+     */
+    public boolean addToFavorite(int userID){
+        if(this.id==0) return false;
+        String sql = "INSERT INTO favorite (user_id, article_id)" +
+                " VALUES ('" + userID + "','" + this.id + "')";
+        try{
+            dbConn.exec(sql);
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            if(e.getMessage().startsWith("该语句没有返回结果集"))
+                return true;
+        }
+        return false;
+    }
+
+    /**
      * 获取某篇文章的作者名
      * 需要bean的id字段已经初始化
      * @return 作者名
