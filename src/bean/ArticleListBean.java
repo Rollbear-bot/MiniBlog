@@ -92,6 +92,36 @@ public class ArticleListBean {
     }
 
     /**
+     * 根据某个字串来匹配文章
+     * @param pattern 匹配字串
+     * @return 符合要求的文章的若干信息
+     */
+    public ArrayList<String> getSearchResult(String pattern){
+        ArrayList<String> res = new ArrayList<>();
+        String sql = "SELECT * FROM post " +
+                " WHERE title='" + pattern + "'" +
+                " OR title LIKE '%" + pattern + "'" +
+                " OR title LIKE '" + pattern + "%'" +
+                " OR title LIKE '%" + pattern + "%'" +
+                " OR text='" + pattern + "'" +
+                " OR text LIKE '%" + pattern + "'" +
+                " OR text LIKE '" + pattern + "%'" +
+                " OR text LIKE '%" + pattern + "%'";
+        try{
+            ResultSet resultSet = dbConn.exec(sql);
+            while (resultSet.next()){
+                res.add(resultSet.getString("title"));
+                res.add(String.valueOf(resultSet.getInt("post_view")));
+                res.add(String.valueOf(resultSet.getInt("id")));
+            }
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
      * 生成HTML风格表格标签（视图相关）
      * @param lt 保存了文章标题和浏览量信息的数组
      * @return HTML标签字符串

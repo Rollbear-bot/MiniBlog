@@ -67,7 +67,7 @@
 <%--搜索栏--%>
 <h2>搜索栏</h2>
 <table>
-<form action="SearchController" method="post">
+<form action="${pageContext.request.contextPath}/SearchController" method="post">
     <tr>
         <td>
             <select name="searchType">
