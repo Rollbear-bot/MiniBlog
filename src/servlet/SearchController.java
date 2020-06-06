@@ -39,9 +39,13 @@ public class SearchController extends HttpServlet {
         ArticleListBean articleListBean = new ArticleListBean();
         UserListBean userListBean = new UserListBean();
 
-        if(type.equals("Post Search")){
+        if(type.equals("ËÑË÷Ìû×Ó")){
             result = articleListBean.toTableLabel(
                     articleListBean.getSearchResult(text));
+        }
+        else if(type.equals("ËÑË÷ÓÃ»§")){
+            result = userListBean.toTableLabel(
+                    userListBean.getSearchResult(text));
         }
 
         req.setAttribute("result", result);
