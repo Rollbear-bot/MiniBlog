@@ -16,6 +16,15 @@
 </head>
 <body>
 
+<%--显示提示信息--%>
+<%
+    //提示信息
+    if (request.getAttribute("message") != null){
+        out.print("<script>alert(\""
+                + request.getAttribute("message") + "\")</script>");
+    }
+%>
+
 <%--获得要显示的文章信息--%>
 <%
     String article_id = "";
@@ -68,11 +77,26 @@
     <div id="title" style="float: left;
     background-color: #e0e0e0; width: 90%">
         <%--显示文章头部--%>
-        <h1 style="text-align: center"><%=title%></h1>
+        <h1 style="text-align: center">
+            <%=title%>
+        </h1>
         <p style="text-align: center">
             作者：<%=articleBean.getAuthorName()%><br>
             发布时间：<%=articleBean.getPublishingDate()%>
         </p>
+
+        <%--收藏文章按钮--%>
+        <div style="width:100%;text-align:center">
+            <form action="${pageContext.request.contextPath}/FavoriteController"
+                  method="post">
+                <%--使用隐藏表单项来传递用户ID和当前文章ID--%>
+                <input type="hidden" name="userID"
+                       value=<%=session.getAttribute("userID")%>>
+                <input type="hidden" name="postID"
+                        value=<%=article_id%>>
+                <input type="submit" value="收藏文章">
+            </form>
+        </div>
     </div>
 
     <div id="content" style="height: 80%; width: 70%; float: right">
