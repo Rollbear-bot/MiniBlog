@@ -30,7 +30,8 @@
 
     //提示信息
     if (request.getAttribute("message") != null){
-        out.print(request.getAttribute("message"));
+        out.print("<script>alert(\""
+                + request.getAttribute("message") + "\")</script>");
     }
 %>
 <p><%=headerMessage%></p>
