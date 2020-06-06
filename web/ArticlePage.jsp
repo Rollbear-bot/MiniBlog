@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="articleBean" class="bean.PostBean"/>
+<jsp:useBean id="userBean" class="bean.UserBean"/>
 
 <html>
 <head>
@@ -25,15 +26,24 @@
     String text = articleBean.getText();  //获取正文
 %>
 
+<%--记录用户浏览信息--%>
+<%
+    int userID = 0;
+    //如果id是null表示访问者是游客
+    if (session.getAttribute("userID") != null)
+        userID = (int) session.getAttribute("userID");
+    userBean.view(userID, Integer.parseInt(article_id));
+%>
+
 <div id="container">
 
     <div id="header" style="border: #6e757a">
         <%--在header中显示当前登录信息--%>
         <%
             String userName = (String) session.getAttribute("userName");
-            int userID = 0;
-            if(session.getAttribute("userID") != null)
-                userID = (int) session.getAttribute("userID");
+//            int userID = 0;
+//            if(session.getAttribute("userID") != null)
+//                userID = (int) session.getAttribute("userID");
             if(userName == null)
                 out.print("<p>游客，请<a href=\"index.jsp\">登录</a></p>");
             else out.print("<p>当前用户：" + userName + "</p>");

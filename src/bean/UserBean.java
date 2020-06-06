@@ -53,6 +53,34 @@ public class UserBean {
     }
 
     /**
+     * 记录用户浏览了某篇文章
+     * @param userID 用户ID
+     * @param postID 文章ID
+     * @return 记录是否成功
+     */
+    public boolean view(int userID, int postID){
+        String update = "UPDATE post SET post_view = post_view + 1"
+                + " WHERE id=" + postID;
+        String insert = "INSERT INTO page_view (user_id, post_id)"
+                + " VALUES ('" + userID + "','" + postID + "')";
+
+        String sql = "";
+        if(userID != 0)
+            sql = update + ";" + insert;
+        //id为0表示访问者是游客，也需要记录访问量，只是不登录浏览记录
+        else sql = update;
+
+        try {
+            dbConn.exec(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            if(e.getMessage().startsWith("该语句没有返回结果集"))
+                return true;
+        }
+        return false;
+    }
+
+    /**
      * 查找用户
      * @param pattern 匹配字串
      */
