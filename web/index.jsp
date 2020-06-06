@@ -19,11 +19,12 @@
 
 <%--显示提示信息--%>
 <%
-  String message = (String) request.getAttribute("message");
-  message = (message == null)? "": message;
+  //提示信息
+  if (request.getAttribute("message") != null){
+    out.print("<script>alert(\""
+            + request.getAttribute("message") + "\")</script>");
+  }
 %>
-<p><%=message%></p>
-<hr>
 
 <%--  使用表格嵌套表单的方式排版--%>
 <div id="blank" style="height: 100%; width: 20%; float: left"></div>

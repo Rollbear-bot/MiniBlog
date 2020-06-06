@@ -21,10 +21,12 @@
 
 <%--显示提示信息--%>
 <%
-    String message = (String) request.getAttribute("message");
-    message = (message == null)? "": message;
+    //提示信息
+    if (request.getAttribute("message") != null){
+        out.print("<script>alert(\""
+                + request.getAttribute("message") + "\")</script>");
+    }
 %>
-<p><%=message%></p>
 
 <table>
     <form action="${pageContext.request.contextPath}/RegisterController"
