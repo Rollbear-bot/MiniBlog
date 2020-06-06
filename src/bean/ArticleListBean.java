@@ -71,14 +71,15 @@ public class ArticleListBean {
     public ArrayList<String> getRecentBrowse(int userID){
         ArrayList<String> res = new ArrayList<>();
         try{
-            ResultSet rs = dbConn.exec(
-                    "SELECT * FROM view, post WHERE user_id='"
-                    + userID
-                    + "' and view.post_id = post.id");
+            String sql = "select distinct title, post_id, post_view\n" +
+                    "FROM page_view, post \n" +
+                    "WHERE [user_id]=" + userID +
+                    "\tand post_id = post.id";
+            ResultSet rs = dbConn.exec(sql);
             while(rs.next()){
                 res.add(rs.getString("title"));
                 res.add(String.valueOf(rs.getInt("post_view")));
-                res.add(String.valueOf(rs.getInt("id")));
+                res.add(String.valueOf(rs.getInt("post_id")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
