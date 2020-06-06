@@ -30,7 +30,8 @@ public class ArticleListBean {
             while(rs.next()){
                 res.add(rs.getString("title"));
                 res.add(String.valueOf(rs.getInt("post_view")));
-                res.add(String.valueOf(rs.getInt("id")));  //把主键取出来才能唯一标识一个帖子
+                //把主键取出来才能唯一标识一个帖子
+                res.add(String.valueOf(rs.getInt("id")));
             }
 
         } catch (SQLException e) {
@@ -52,11 +53,12 @@ public class ArticleListBean {
                     "SELECT * FROM favorite, post WHERE user_id='"
                     + userID
                     + "' and favorite.article_id = post.id" +
-                            "ORDER BY store_time DESC");
+                            " ORDER BY store_time DESC");
             while(rs.next()){
                 res.add(rs.getString("title"));
                 res.add(String.valueOf(rs.getInt("post_view")));
-                res.add(String.valueOf(rs.getInt("id")));  //把主键取出来才能唯一标识一个帖子
+                //把主键取出来才能唯一标识一个帖子
+                res.add(String.valueOf(rs.getInt("id")));
             }
 
         } catch (SQLException e) {
@@ -74,10 +76,9 @@ public class ArticleListBean {
         ArrayList<String> res = new ArrayList<>();
         try{
             String sql = "select distinct title, post_id, post_view\n" +
-                    "FROM page_view, post \n" +
-                    "WHERE [user_id]=" + userID +
-                    "\tand post_id = post.id" +
-                    "ORDER BY publishing_date DESC";
+                    " FROM page_view, post \n" +
+                    " WHERE [user_id]=" + userID +
+                    "\tand post_id = post.id";
             ResultSet rs = dbConn.exec(sql);
             while(rs.next()){
                 res.add(rs.getString("title"));
@@ -101,8 +102,10 @@ public class ArticleListBean {
         for (int index=0; index < lt.size(); index += 3) {
             stringBuilder.append("<tr>");
             stringBuilder.append("<td><a href=\"ArticlePage.jsp?article_id=")
-                    .append(lt.get(index+2)).append("\">").append(lt.get(index)).append("</a></td>");
-            stringBuilder.append("<td>" + "浏览量：").append(lt.get(index+1)).append("</td>");
+                    .append(lt.get(index+2)).append("\">")
+                    .append(lt.get(index)).append("</a></td>");
+            stringBuilder.append("<td>" + "浏览量：")
+                    .append(lt.get(index+1)).append("</td>");
             stringBuilder.append("</tr>");
         }
         stringBuilder.append("</table>");

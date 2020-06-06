@@ -42,14 +42,14 @@ public class UserListBean {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<table>");
         stringBuilder.append("<tr><td>id</td><td>用户名</td><td>关注时间</td></tr>");
-        for (int index=0; index < lt.size(); index++) {
+        for (int index=0; index < lt.size(); index+=3) {
             stringBuilder.append("<tr>");
+            stringBuilder.append("<td>")
+                    .append(lt.get(index)).append("</td>");
             stringBuilder.append("<td><a href=\"UserProfile.jsp?userID=")
-                    .append(lt.get(index)).append("\">").append(lt.get(index)).append("</a></td>");
-            index++;
-            stringBuilder.append("<td>").append(lt.get(index)).append("</td>");
-            index++;
-            stringBuilder.append("<td>").append(lt.get(index)).append("</td>");
+                    .append(lt.get(index)).append("\">")
+                    .append(lt.get(index+1)).append("</a></td>");
+            stringBuilder.append("<td>").append(lt.get(index+2)).append("</td>");
             stringBuilder.append("</tr>");
         }
         stringBuilder.append("</table>");
