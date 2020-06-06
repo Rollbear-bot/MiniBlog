@@ -44,7 +44,7 @@ public class UserListBean {
         stringBuilder.append("<tr><td>id</td><td>用户名</td><td>关注时间</td></tr>");
         for (int index=0; index < lt.size(); index++) {
             stringBuilder.append("<tr>");
-            stringBuilder.append("<td><a href=\"ArticlePage.jsp?title=")
+            stringBuilder.append("<td><a href=\"UserProfile.jsp?userID=")
                     .append(lt.get(index)).append("\">").append(lt.get(index)).append("</a></td>");
             index++;
             stringBuilder.append("<td>").append(lt.get(index)).append("</td>");

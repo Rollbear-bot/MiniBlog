@@ -55,6 +55,9 @@ public class UserBean {
                 gender = resultSet.getString("gender");
                 email = resultSet.getString("email");
                 password = resultSet.getString("password");
+                permission = resultSet.getInt("permission");
+                registering_date
+                        = resultSet.getDate("registering_date");
                 return true;
             }
         } catch (SQLException e) {
@@ -117,11 +120,17 @@ public class UserBean {
     private String email;  //email×÷ÎªµÇÂ¼Ãû
     private String gender;
     private String userName;
+    private Date registering_date;
+    private int permission;
     private final DBConn dbConn;
 
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+    public String getGender(){return gender;}
+
+    public String getEmail(){return email;}
 
     public void setUserName(String userName) {
         this.userName = userName;
@@ -139,5 +148,13 @@ public class UserBean {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Date getRegistering_date() {
+        return registering_date;
+    }
+
+    public int getPermission() {
+        return permission;
     }
 }
