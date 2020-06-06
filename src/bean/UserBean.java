@@ -1,5 +1,5 @@
 package bean;/*
-1 * 处理有关注册用户业务逻辑的Bean
+1 * 用户业务逻辑的Bean
 2 * @Author: Rollbear
 3 * @Date: 2020/5/31 23:01 */
 
@@ -37,6 +37,30 @@ public class UserBean {
             e.printStackTrace();
             return false;
         }
+    }
+
+    /**
+     * 设置用户ID的同时从数据库取出对应记录
+     * 并初始化用户对象的各个字段
+     * @param id 用户id
+     * @return 执行是否成功
+     */
+    public boolean setID(int id){
+        this.userID = id;
+        String sql = "SELECT * FROM registered_user WHERE id=" + id;
+        try {
+            ResultSet resultSet = dbConn.exec(sql);
+            if (resultSet.next()){
+                userName = resultSet.getString("name");
+                gender = resultSet.getString("gender");
+                email = resultSet.getString("email");
+                password = resultSet.getString("password");
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**
