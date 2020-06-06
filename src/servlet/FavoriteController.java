@@ -21,7 +21,9 @@ public class FavoriteController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
         String uid = req.getParameter("userID");
         String pid = req.getParameter("postID");
 

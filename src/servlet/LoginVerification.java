@@ -19,7 +19,9 @@ public class LoginVerification extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
         //获取表单中的参数
         String email = req.getParameter("email");
         String pwd = req.getParameter("pwd");

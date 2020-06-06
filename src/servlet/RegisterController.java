@@ -24,6 +24,7 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
         String email = req.getParameter("email");
         String pwd = req.getParameter("password");
         String ensure = req.getParameter("ensure");
