@@ -69,6 +69,10 @@
     background-color: #ececec; width: 90%">
         <%--显示文章头部--%>
         <h1 style="text-align: center"><%=title%></h1>
+        <p style="text-align: center">
+            作者：<%=articleBean.getAuthorName()%><br>
+            发布时间：<%=articleBean.getPublishingDate()%>
+        </p>
     </div>
 
     <div id="content" style="height: 80%; width: 70%; float: right">

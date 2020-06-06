@@ -6,8 +6,10 @@ package bean;/*
 import util.DBConn;
 
 import java.sql.ResultSet;
+import java.sql.SQLData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Date;
 
 /**
  * （单个）帖子对象
@@ -22,6 +24,7 @@ public class PostBean {
     private String text;
     private int postView;
     private String type;
+    private Date publishing_date;
     private final DBConn dbConn;
 
     /**
@@ -39,9 +42,31 @@ public class PostBean {
             this.text = rs.getString("text");
             this.postView = rs.getInt("post_view");
             this.type = rs.getString("type");
+            this.publishing_date = rs.getDate("publishing_date");
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 获取某篇文章的作者名
+     * 需要bean的id字段已经初始化
+     * @return 作者名
+     */
+    public String getAuthorName(){
+        if(id == 0) return null;
+        String sql = "SELECT name FROM post, registered_user" +
+                " WHERE publisher = registered_user.id" +
+                " and post.id = " + this.id;
+        try{
+            ResultSet rs = dbConn.exec(sql);
+            if (rs.next()){
+                return rs.getString("name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     //getters below
@@ -63,6 +88,10 @@ public class PostBean {
 
     public String getType() {
         return type;
+    }
+
+    public String getPublishingDate(){
+        return this.publishing_date.toString();
     }
 
 }
