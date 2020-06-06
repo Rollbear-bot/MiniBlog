@@ -66,7 +66,7 @@
     </div>
 
     <div id="title" style="float: left;
-    background-color: #bdbdbd; width: 90%">
+    background-color: #e0e0e0; width: 90%">
         <%--显示文章头部--%>
         <h1 style="text-align: center"><%=title%></h1>
         <p style="text-align: center">

@@ -22,7 +22,7 @@ public class UserListBean {
      * @param userID 用户ID
      * @return 字符串数组
      */
-    public String getFollowing(int userID){
+    public ArrayList<String> getFollowing(int userID){
         ArrayList<String> lt = new ArrayList<>();
         try {
             ResultSet rs = dbConn.exec(
@@ -35,25 +35,11 @@ public class UserListBean {
                 lt.add(String.valueOf(rs.getString("name")));
                 lt.add(String.valueOf(rs.getDate("following_date")));
             }
+            return lt;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("<table>");
-        stringBuilder.append("<tr><td>id</td><td>用户名</td><td>关注时间</td></tr>");
-        for (int index=0; index < lt.size(); index+=3) {
-            stringBuilder.append("<tr>");
-            stringBuilder.append("<td>")
-                    .append(lt.get(index)).append("</td>");
-            stringBuilder.append("<td><a href=\"UserProfile.jsp?userID=")
-                    .append(lt.get(index)).append("\">")
-                    .append(lt.get(index+1)).append("</a></td>");
-            stringBuilder.append("<td>").append(lt.get(index+2)).append("</td>");
-            stringBuilder.append("</tr>");
-        }
-        stringBuilder.append("</table>");
-        return stringBuilder.toString();
+        return null;
     }
 
     /**

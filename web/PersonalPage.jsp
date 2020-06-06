@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="articleList" class="bean.ArticleListBean"/>
 <jsp:useBean id="userList" class="bean.UserListBean"/>
+<jsp:useBean id="userBean" class="bean.UserBean"/>
 
 <html>
 <head>
@@ -19,11 +20,12 @@
 <%
     String userName = (String) session.getAttribute("userName");
     int userID = (int) session.getAttribute("userID");
+    userBean.setID(userID);
 %>
 
 <div id="blank" style="height: 100%; width: 20%; float: left"></div>
 <div id="header" style="height: 10%; width: 80%; float: right">
-    <h1><%=userName%>，你的用户ID是<%=userID%></h1>
+    <h1><%=userName%>（权限等级<%=userBean.getPermission()%>）</h1>
 </div>
 
 <div id="content" style="width: 80%; height: 90%; float: right">
@@ -50,7 +52,7 @@
 
 <%--关注的用户--%>
 <h2>关注的用户</h2>
-<p><%=userList.getFollowing(userID)%></p>
+<p><%=userList.toTableLabel(userList.getFollowing(userID))%></p>
 
 </div>
 
