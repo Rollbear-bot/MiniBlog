@@ -48,8 +48,8 @@
     </div>
 
     <%--菜单栏--%>
-    <div id="menu" style="background-color: #fdf7bb;
-    float: left; height: 80%; width: 10%; text-align: center">
+    <div id="menu" style="background-color: #ececec;
+    float: left; height: 100%; width: 10%; text-align: center">
         <b>菜单</b>
         <%
             if (userName == null){
@@ -66,7 +66,7 @@
     </div>
 
     <div id="title" style="float: left;
-    background-color: #ececec; width: 90%">
+    background-color: #bdbdbd; width: 90%">
         <%--显示文章头部--%>
         <h1 style="text-align: center"><%=title%></h1>
         <p style="text-align: center">
@@ -82,7 +82,7 @@
 
     <div id="comment" style="background-color: #85a6d8;
     height: 200px; clear: both; text-align: center">
-        <p>评论</p>
+        <h2>评论</h2>
         <%--todo::评论--%>
     </div>
 

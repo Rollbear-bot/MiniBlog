@@ -37,11 +37,15 @@
                 + request.getAttribute("message") + "\")</script>");
     }
 %>
-<p><%=headerMessage%></p>
+
+<div id="blank" style="height: 100%; width: 20%; float: left"></div>
+<div id="header" style="height: 10%; width: 80%; float: right">
+    <h1><%=headerMessage%></h1>
+</div>
+<div id="content" style="width: 80%; height: 90%; float: right">
 
 <%--从JavaBean获取文章列表并显示--%>
-<hr>
-<p>文章列表</p>
+<h2>文章列表</h2>
 <%
     ArrayList<String> lt = articleProfileBean.getArticleProfile();
     String table = articleProfileBean.toTableLabel(lt);
@@ -49,7 +53,7 @@
 %>
 
 <%--导航栏--%>
-<hr>
+<h2>导航栏</h2>
 <%
     if(login){
         out.print("<p><a href=\"PersonalPage.jsp\">个人主页</a> </p>");
@@ -61,10 +65,9 @@
 %>
 
 <%--搜索栏--%>
-<hr>
+<h2>搜索栏</h2>
 <table>
 <form action="SearchController" method="post">
-    <tr><td>搜索栏</td></tr>
     <tr>
         <td>
             <select name="searchType">
@@ -81,6 +84,8 @@
     </tr>
 </form>
 </table>
+
+<hr>
 
 </body>
 </html>

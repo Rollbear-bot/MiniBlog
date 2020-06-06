@@ -12,7 +12,6 @@
     <link rel="stylesheet" type="text/css" href="./StaticFiles/vue.css">
   </head>
   <style>
-    p {text-align: center}
     table {text-align: center; align-self: center; align-content: center}
     form {text-align: center; align-self: center; align-content: center}
   </style>
@@ -27,7 +26,11 @@
 <hr>
 
 <%--  使用表格嵌套表单的方式排版--%>
-  <p>请登录</p>
+<div id="blank" style="height: 100%; width: 20%; float: left"></div>
+<div id="header" style="height: 10%; width: 80%; float: right">
+  <h1>请登录</h1>
+</div>
+<div id="content" style="width: 80%; height: 90%; float: right">
   <table>
     <form action="${pageContext.request.contextPath}/LoginVerification"
     method="post" name="getLoginInfo">
@@ -45,7 +48,10 @@
     </form>
   </table>
 
+  <hr>
   <p>还没有账号？<a href="RegisterPage.jsp">注册一个</a> </p>
+  <p>或<a href="HomePage.jsp">以游客身份浏览</a> </p>
+</div>
 
   </body>
 </html>

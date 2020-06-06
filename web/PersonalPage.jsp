@@ -15,22 +15,28 @@
     <link rel="stylesheet" type="text/css" href="./StaticFiles/vue.css">
 </head>
 <body>
+
 <%
     String userName = (String) session.getAttribute("userName");
     int userID = (int) session.getAttribute("userID");
 %>
-<p><%=userName%>，你的用户ID是<%=userID%></p>
-<hr>
+
+<div id="blank" style="height: 100%; width: 20%; float: left"></div>
+<div id="header" style="height: 10%; width: 80%; float: right">
+    <h1><%=userName%>，你的用户ID是<%=userID%></h1>
+</div>
+
+<div id="content" style="width: 80%; height: 90%; float: right">
 
 <%--收藏夹--%>
+<h2>收藏夹</h2>
 <%
     //从bean里取出当前用户的收藏夹
     ArrayList<String> arrayProfile = articleList.getFavorite(userID);
     String favorite = articleList.toTableLabel(arrayProfile);
 %>
-<p>收藏夹</p>
 <p><%=favorite%></p>
-<hr>
+
 
 <%--近期浏览--%>
 <%
@@ -38,14 +44,15 @@
     String recentBrowse = articleList.toTableLabel(
             articleList.getRecentBrowse(userID));
 %>
-<p>近期浏览</p>
+<h2>近期浏览</h2>
 <p><%=recentBrowse%></p>
-<hr>
+
 
 <%--关注的用户--%>
-<p>关注的用户</p>
+<h2>关注的用户</h2>
 <p><%=userList.getFollowing(userID)%></p>
 
+</div>
 
 </body>
 </html>

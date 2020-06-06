@@ -13,15 +13,19 @@
 </head>
 <body>
 
+<div id="blank" style="height: 100%; width: 20%; float: left"></div>
+<div id="header" style="height: 10%; width: 80%; float: right">
+    <h1>注册</h1>
+</div>
+<div id="content" style="width: 80%; height: 90%; float: right">
+
 <%--显示提示信息--%>
 <%
     String message = (String) request.getAttribute("message");
     message = (message == null)? "": message;
 %>
 <p><%=message%></p>
-<hr>
 
-<p>注册页面</p>
 <table>
     <form action="${pageContext.request.contextPath}/RegisterController"
           method="post">
@@ -53,6 +57,12 @@
         </tr>
     </form>
 </table>
+
+<hr>
+<p>已有账号？<a href="index.jsp">点击登录</a> </p>
+<p>或<a href="HomePage.jsp">以游客身份浏览</a> </p>
+
+</div>
 
 </body>
 </html>

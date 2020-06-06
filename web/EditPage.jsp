@@ -15,6 +15,12 @@
 </head>
 <body>
 
+<div id="blank" style="height: 100%; width: 20%; float: left"></div>
+<div id="header" style="height: 10%; width: 80%; float: right">
+    <h1>编辑文章</h1>
+</div>
+<div id="content" style="width: 80%; height: 90%; float: right">
+
 <table>
     <form action="${pageContext.request.contextPath}/PublishController"
           method="post">
@@ -35,6 +41,8 @@
         </tr>
     </form>
 </table>
+
+</div>
 
 </body>
 </html>
