@@ -114,7 +114,8 @@ public class UserBean {
      * @return 操作执行是否成功
      */
     public boolean follow(int targetID){
-        if(this.userID == 0) return false;
+        if (this.userID == targetID) return false; //不能关注自己
+        if(this.userID == 0) return false;  //尚未设置当前用户的主键
 
         //查找当前用户已关注的用户
         ArrayList<Integer> followed = new ArrayList<>();
