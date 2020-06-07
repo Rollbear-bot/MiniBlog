@@ -127,7 +127,9 @@
 
         <%--评论显示栏--%>
         <div style="width:100%;text-align:center">
-            <%=articleListBean.getCommentList(articleBean.getPostID())%>
+            <div style="width:60%;text-align:center; float: right">
+                <%=articleListBean.getCommentList(articleBean.getPostID())%>
+            </div>
         </div>
     </div>
 

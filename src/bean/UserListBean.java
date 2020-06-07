@@ -29,7 +29,8 @@ public class UserListBean {
                     "SELECT * FROM follow, registered_user WHERE "
                             + "follower = '"
                             + userID
-                            + "' and target = registered_user.id");
+                            + "' and target = registered_user.id"
+                            + " and ban=0");
             while(rs.next()){
                 lt.add(rs.getString("target"));
                 lt.add(String.valueOf(rs.getString("name")));
@@ -50,7 +51,7 @@ public class UserListBean {
     public ArrayList<String> getSearchResult(String pattern){
         ArrayList<String> res = new ArrayList<>();
         String sql = "SELECT * FROM registered_user " +
-                " WHERE name='" + pattern + "'" +
+                " WHERE ban=0 and name='" + pattern + "'" +
                 " OR name LIKE '%" + pattern + "'" +
                 " OR name LIKE '" + pattern + "%'" +
                 " OR name LIKE '%" + pattern + "%'";

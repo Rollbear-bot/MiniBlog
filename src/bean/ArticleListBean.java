@@ -26,7 +26,8 @@ public class ArticleListBean {
         try {
             ResultSet rs = dbConn.exec(
                     "SELECT * FROM post WHERE type='article' " +
-                            "ORDER BY publishing_date DESC");
+                            " and ban=0 " +
+                            " ORDER BY publishing_date DESC");
             while(rs.next()){
                 res.add(rs.getString("title"));
                 res.add(String.valueOf(rs.getInt("post_view")));
@@ -53,6 +54,7 @@ public class ArticleListBean {
                     "SELECT * FROM favorite, post WHERE user_id='"
                     + userID
                     + "' and favorite.article_id = post.id" +
+                            " and ban=0" +
                             " ORDER BY store_time DESC");
             while(rs.next()){
                 res.add(rs.getString("title"));
@@ -78,7 +80,8 @@ public class ArticleListBean {
             String sql = "select distinct title, post_id, post_view\n" +
                     " FROM page_view, post \n" +
                     " WHERE [user_id]=" + userID +
-                    "\tand post_id = post.id";
+                    " and post_id = post.id" +
+                    " and ban=0";
             ResultSet rs = dbConn.exec(sql);
             while(rs.next()){
                 res.add(rs.getString("title"));
@@ -99,7 +102,7 @@ public class ArticleListBean {
     public ArrayList<String> getSearchResult(String pattern){
         ArrayList<String> res = new ArrayList<>();
         String sql = "SELECT * FROM post " +
-                " WHERE title='" + pattern + "'" +
+                " WHERE ban=0 and title='" + pattern + "'" +
                 " OR title LIKE '%" + pattern + "'" +
                 " OR title LIKE '" + pattern + "%'" +
                 " OR title LIKE '%" + pattern + "%'" +
@@ -130,7 +133,8 @@ public class ArticleListBean {
         ArrayList<String> lt = new ArrayList<>();
         String sql = "SELECT * FROM post, registered_user " +
                 " WHERE parent_post=" + postID +
-                " and post.publisher = registered_user.id";
+                " and post.publisher = registered_user.id" +
+                " and post.ban=0";
         try{
             //从数据库抓取对应文章的评论正文、作者和发布时间
             ResultSet resultSet = dbConn.exec(sql);
