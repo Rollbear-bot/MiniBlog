@@ -7,6 +7,7 @@ import util.DBConn;
 import java.sql.*;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserBean {
     /**
@@ -108,11 +109,39 @@ public class UserBean {
     }
 
     /**
-     * 查找用户
-     * @param pattern 匹配字串
+     * 将某个用户添加到当前用户的关注列表
+     * @param targetID 目标用户的ID
+     * @return 操作执行是否成功
      */
-    public void userSearcher(String pattern){
+    public boolean follow(int targetID){
+        if(this.userID == 0) return false;
 
+        //查找当前用户已关注的用户
+        ArrayList<Integer> followed = new ArrayList<>();
+        String select = "SELECT * FROM follow WHERE follower =" + userID;
+        try{
+            ResultSet resultSet = dbConn.exec(select);
+            while (resultSet.next())
+                followed.add(resultSet.getInt("target"));
+            for(int f: followed)
+                if (f == targetID) {
+                    //此处关注失败是因为该用户已经在关注列表中
+                    return false;
+                }
+        } catch (SQLException e) {
+            return false;
+        }
+        //插入关注记录
+        String insert = "INSERT INTO follow (follower, target)" +
+                " VALUES ('" + this.userID + "','" + targetID + "')";
+        try{
+            dbConn.exec(insert);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            if(e.getMessage().startsWith("该语句没有返回结果集"))
+                return true;
+        }
+        return false;
     }
 
     private int userID;

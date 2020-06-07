@@ -10,6 +10,12 @@
 <jsp:useBean id="articleListBean" class="bean.ArticleListBean"/>
 
 <%
+    //提示信息
+    if (request.getAttribute("message") != null){
+        out.print("<script>alert(\""
+                + request.getAttribute("message") + "\")</script>");
+    }
+    //加载当前用户的信息
     if(request.getParameter("userID")==null)
         request.getRequestDispatcher("HomePage.jsp")
                 .forward(request, response);
@@ -28,6 +34,17 @@
     <div id="blank" style="height: 100%; width: 20%; float: left"></div>
     <div id="header" style="height: 10%; width: 80%; float: right">
         <h1><%=userBean.getUserName()%></h1>
+        <%--关注按钮--%>
+        <h1>
+            <form action="${pageContext.request.contextPath}/FollowController"
+                  method="post">
+                <%--在隐藏表单域中传入关注目标和当前用户的ID--%>
+                <input type="hidden" name="target" value=<%=userID%>>
+                <input type="hidden" name="cur_user"
+                       value=<%=session.getAttribute("userID")%>>
+                <input type="submit" value="关注该用户">
+            </form>
+        </h1>
     </div>
     <div id="content" style="width: 80%; height: 90%; float: right">
 
