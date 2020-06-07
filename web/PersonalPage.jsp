@@ -23,7 +23,12 @@
     userBean.setID(userID);
 %>
 
-<div id="blank" style="height: 100%; width: 20%; float: left"></div>
+<div id="blank" style="height: 100%; width: 20%; float: left">
+    <div style="width:100%;text-align:center">
+        <h3>导航栏</h3>
+        <a href="HomePage.jsp?login=1">主站</a>
+    </div>
+</div>
 <div id="header" style="height: 10%; width: 80%; float: right">
     <h1><%=userName%>（权限等级<%=userBean.getPermission()%>）</h1>
 </div>
