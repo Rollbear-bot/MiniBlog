@@ -38,7 +38,10 @@
     }
 %>
 
-<div id="blank" style="height: 100%; width: 20%; float: left"></div>
+<div id="blank" style="height: 100%; width: 20%; float: left">
+    <h1 style="text-align: center">ROLLBEAR'S<br>BLOG</h1>
+</div>
+
 <div id="header" style="height: 10%; width: 80%; float: right">
     <h1><%=headerMessage%></h1>
 </div>
