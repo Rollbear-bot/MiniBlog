@@ -52,7 +52,11 @@
 
 <%--关注的用户--%>
 <h2>关注的用户</h2>
-<p><%=userList.toTableLabel(userList.getFollowing(userID))%></p>
+<p><%=userList.toTableLabel(userList.getFollowing(userID), "关注时间")%></p>
+
+<%--如果用户拥有管理员权限，则显示管理员菜单--%>
+<h2>管理员菜单</h2>
+
 
 </div>
 

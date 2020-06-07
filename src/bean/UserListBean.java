@@ -63,6 +63,7 @@ public class UserListBean {
                         .toString());
             }
             return res;
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -74,10 +75,11 @@ public class UserListBean {
      * @param lt 用户信息数组
      * @return HTML表格标签字符串
      */
-    public String toTableLabel(ArrayList<String> lt){
+    public String toTableLabel(ArrayList<String> lt, String dateLabel){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<table>");
-        stringBuilder.append("<tr><td>id</td><td>用户名</td><td>关注时间</td></tr>");
+        stringBuilder.append("<tr><td>id</td><td>用户名</td><td>")
+                .append(dateLabel).append("</td></tr>");
         for (int index=0; index < lt.size(); index+=3) {
             stringBuilder.append("<tr>");
             stringBuilder.append("<td>")

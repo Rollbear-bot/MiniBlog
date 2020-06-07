@@ -45,7 +45,7 @@ public class SearchController extends HttpServlet {
         }
         else if(type.equals("搜索用户")){
             result = userListBean.toTableLabel(
-                    userListBean.getSearchResult(text));
+                    userListBean.getSearchResult(text), "注册时间");
         }
 
         req.setAttribute("result", result);
