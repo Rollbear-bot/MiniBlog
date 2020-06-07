@@ -145,6 +145,22 @@ public class UserBean {
         return false;
     }
 
+    /**
+     * 封禁当前用户
+     * @return 操作是否成功
+     */
+    public boolean ban(){
+        String sql = "UPDATE registered_user SET ban=1 " +
+                "WHERE id=" + this.userID;
+        try{
+            dbConn.exec(sql);
+        } catch (SQLException e) {
+            if(e.getMessage().startsWith("该语句没有返回结果集"))
+                return true;
+        }
+        return false;
+    }
+
     private int userID;
     private String password;
     private String email;  //email作为登录名

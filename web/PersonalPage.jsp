@@ -60,7 +60,10 @@
 <p><%=userList.toTableLabel(userList.getFollowing(userID), "关注时间")%></p>
 
 <%--如果用户拥有管理员权限，则显示管理员菜单--%>
-<h2>管理员菜单</h2>
+<%
+    if(userBean.getPermission() > 0) out.print("<h2>管理员菜单</h2>\n" +
+                "<a href=\"Admin.jsp\">屏蔽文章/封禁用户</a>");
+%>
 
 
 </div>

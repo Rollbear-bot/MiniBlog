@@ -89,6 +89,21 @@ public class PostBean {
         return null;
     }
 
+    /**
+     * 封禁当前文章
+     * @return 操作是否成功
+     */
+    public boolean ban(){
+        String sql = "UPDATE post SET ban=1 WHERE id=" + postID;
+        try{
+            dbConn.exec(sql);
+        } catch (SQLException e) {
+            if(e.getMessage().startsWith("该语句没有返回结果集"))
+                return true;
+        }
+        return false;
+    }
+
     //getters below
     public int getPostView() {
         return postView;
