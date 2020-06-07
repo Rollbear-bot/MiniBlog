@@ -102,7 +102,7 @@ public class ArticleListBean {
     public ArrayList<String> getSearchResult(String pattern){
         ArrayList<String> res = new ArrayList<>();
         String sql = "SELECT * FROM post " +
-                " WHERE ban=0 and title='" + pattern + "'" +
+                " WHERE title='" + pattern + "'" +
                 " OR title LIKE '%" + pattern + "'" +
                 " OR title LIKE '" + pattern + "%'" +
                 " OR title LIKE '%" + pattern + "%'" +
@@ -113,6 +113,9 @@ public class ArticleListBean {
         try{
             ResultSet resultSet = dbConn.exec(sql);
             while (resultSet.next()){
+                if(resultSet.getInt("ban") == 1) continue;
+                if(resultSet.getString("type").equals("comment"))
+                    continue;
                 res.add(resultSet.getString("title"));
                 res.add(String.valueOf(resultSet.getInt("post_view")));
                 res.add(String.valueOf(resultSet.getInt("id")));

@@ -51,13 +51,14 @@ public class UserListBean {
     public ArrayList<String> getSearchResult(String pattern){
         ArrayList<String> res = new ArrayList<>();
         String sql = "SELECT * FROM registered_user " +
-                " WHERE ban=0 and name='" + pattern + "'" +
+                " WHERE name='" + pattern + "'" +
                 " OR name LIKE '%" + pattern + "'" +
                 " OR name LIKE '" + pattern + "%'" +
                 " OR name LIKE '%" + pattern + "%'";
         try{
             ResultSet resultSet = dbConn.exec(sql);
             while(resultSet.next()){
+                if(resultSet.getInt("ban") == 1) continue;
                 res.add(String.valueOf(resultSet.getInt("id")));
                 res.add(resultSet.getString("name"));
                 res.add(resultSet.getDate("registering_date")
