@@ -28,7 +28,7 @@ public class FavoriteController extends HttpServlet {
         String pid = req.getParameter("postID");
 
         PostBean bean = new PostBean();
-        bean.setId(Integer.parseInt(pid));
+        bean.setPostID(Integer.parseInt(pid));
 
         if (uid == null || uid.equals("") || uid.equals("null")){
             req.setAttribute("message","若要收藏文章，请先登录");

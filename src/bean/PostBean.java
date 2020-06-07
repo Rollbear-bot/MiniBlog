@@ -6,9 +6,7 @@ package bean;/*
 import util.DBConn;
 
 import java.sql.ResultSet;
-import java.sql.SQLData;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.sql.Date;
 
 /**
@@ -19,22 +17,23 @@ public class PostBean {
         dbConn = new DBConn();  //连接数据库
     }
 
-    private int id;
+    private int postID;
     private String title;
     private String text;
     private int postView;
     private String type;
     private Date publishing_date;
+    private int publisherID;
     private final DBConn dbConn;
 
     /**
      * 从JSP接收主键（文章ID）的同时，
      * 从数据库抓取对应的记录，并初始化各个字段
-     * @param id 文章/评论ID
+     * @param postID 文章/评论ID
      */
-    public void setId(int id) {
-        this.id = id;
-        String sql = "SELECT * FROM post WHERE id='" + id + "'";
+    public void setPostID(int postID) {
+        this.postID = postID;
+        String sql = "SELECT * FROM post WHERE id='" + postID + "'";
         try{
             ResultSet rs = dbConn.exec(sql);
             rs.next();
@@ -43,6 +42,7 @@ public class PostBean {
             this.postView = rs.getInt("post_view");
             this.type = rs.getString("type");
             this.publishing_date = rs.getDate("publishing_date");
+            this.publisherID = rs.getInt("publisher");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -54,9 +54,9 @@ public class PostBean {
      * @return 收藏成功或失败
      */
     public boolean addToFavorite(int userID){
-        if(this.id==0) return false;
+        if(this.postID ==0) return false;
         String sql = "INSERT INTO favorite (user_id, article_id)" +
-                " VALUES ('" + userID + "','" + this.id + "')";
+                " VALUES ('" + userID + "','" + this.postID + "')";
         try{
             dbConn.exec(sql);
             return false;
@@ -74,10 +74,10 @@ public class PostBean {
      * @return 作者名
      */
     public String getAuthorName(){
-        if(id == 0) return null;
+        if(postID == 0) return null;
         String sql = "SELECT name FROM post, registered_user" +
                 " WHERE publisher = registered_user.id" +
-                " and post.id = " + this.id;
+                " and post.id = " + this.postID;
         try{
             ResultSet rs = dbConn.exec(sql);
             if (rs.next()){
@@ -102,8 +102,8 @@ public class PostBean {
         return title;
     }
 
-    public int getId() {
-        return id;
+    public int getPostID() {
+        return postID;
     }
 
     public String getType() {
@@ -111,7 +111,11 @@ public class PostBean {
     }
 
     public String getPublishingDate(){
-        return this.publishing_date.toString();
+        if(publishing_date == null) return "Unknown";
+        else return this.publishing_date.toString();
     }
 
+    public int getPublisherID() {
+        return publisherID;
+    }
 }

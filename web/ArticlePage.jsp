@@ -30,7 +30,7 @@
 <%
     String article_id = "";
     article_id = (String) request.getParameter("article_id");
-    articleBean.setId(Integer.parseInt(article_id));
+    articleBean.setPostID(Integer.parseInt(article_id));
 
     String title = articleBean.getTitle();  //获取文章标题
     String text = articleBean.getText();  //获取正文
@@ -82,7 +82,9 @@
             <%=title%>
         </h1>
         <p style="text-align: center">
-            作者：<%=articleBean.getAuthorName()%><br>
+            作者：<a href=<%="UserProfile.jsp?userID="+articleBean.getPublisherID()%>>
+                    <%=articleBean.getAuthorName()%>
+                </a><br>
             发布时间：<%=articleBean.getPublishingDate()%>
         </p>
 
@@ -117,7 +119,7 @@
                 <input type="submit" value="发布评论">
                 <%--在隐藏表项中传递当前帖子的ID和用户ID--%>
                 <input type="hidden" name="parent_post"
-                       value=<%=articleBean.getId()%>>
+                       value=<%=articleBean.getPostID()%>>
                 <input type="hidden" name="userID"
                        value=<%=userID%>>
             </form>
@@ -125,7 +127,7 @@
 
         <%--评论显示栏--%>
         <div style="width:100%;text-align:center">
-            <%=articleListBean.getCommentList(articleBean.getId())%>
+            <%=articleListBean.getCommentList(articleBean.getPostID())%>
         </div>
     </div>
 
