@@ -58,7 +58,7 @@ public class ArticleListBean {
                 res.add(rs.getString("title"));
                 res.add(String.valueOf(rs.getInt("post_view")));
                 //把主键取出来才能唯一标识一个帖子
-                res.add(String.valueOf(rs.getInt("id")));
+                res.add(String.valueOf(rs.getInt("article_id")));
             }
 
         } catch (SQLException e) {
