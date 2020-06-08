@@ -46,7 +46,7 @@ public class LoginVerification extends HttpServlet {
         }
         else {
             //µÇÂ½Ê§°Ü£¬·µ»ØµÇÂ¼Ò³Ãæ
-            req.setAttribute("message","ÓÊÏäµØÖ·»òÃÜÂë´íÎó");
+            req.setAttribute("message","ÓÊÏäµØÖ·»òÃÜÂë´íÎó£¬»òÕËºÅ±»·â½û");
             req.getRequestDispatcher("index.jsp").forward(req, resp);
         }
     }

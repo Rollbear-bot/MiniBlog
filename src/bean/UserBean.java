@@ -31,7 +31,7 @@ public class UserBean {
                 userID = rs.getInt("id");
                 gender = rs.getString("gender");
                 userName = rs.getString("name");
-                return true;
+                return rs.getInt("ban") != 1;
             }
             return false;
         } catch (SQLException e) {
